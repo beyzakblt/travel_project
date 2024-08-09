@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Rehberim</title>
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .card {
+            width: 80%;
+            margin: auto;
+        }
+
+        .card-img-top {
+            position: relative;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-img-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .card-title {
+            margin: 20px;
+            color: black;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        #map {
+            height: 400px;
+            width: 80%;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+
+        .list-group-item {
+            border: none;
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            background: linear-gradient(360deg, #00bfff, #00ff7f);
+            width: 50%;
+
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hava Durumu Start -->
+    <div id="id361ea65fd227e"
+        a='{"t":"g7bs","v":"1.2","lang":"tr","locs":[1474],"ssot":"c","sics":"ds","cbkg":"rgba(255,255,255,0)","cfnt":"rgb(0,0,0)","cend":"rgba(0,0,0,0)","slis":36,"slfs":17}'>
+        Hava Durumu Veri Kaynağı: <a
+            href="https://sharpweather.com/weather_istanbul/30_days/">sharpweather.com/weather_istanbul/30_days/</a>
+    </div>
+    <script async src="https://static1.sharpweather.com/widgetjs/?id=id361ea65fd227e"></script>
+    <!-- Hava Durumu End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-custom  sticky-top">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="/templates/index.html"><img src="/img/icon.png" alt="Istanbul Image">Gezi
+                Rehberim </a>
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form id="search-form" class="d-flex mx-auto" role="search">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search"
+                        aria-label="Search">
+                </form>
+                <div id="search-results" class="mt-3"></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-2" aria-current="page" href="/templates/istanbul.html"><img
+                                src="/img/icon2.png" alt="Istanbul Image">İstanbul</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="/templates/plan.html">Plan Oluştur</a>
+                    </li>
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifications" aria-labelledby="navbarDropdownMenuLink">
+                          <li><a class="dropdown-item" href="#">Kullanmadığın kupan var!</a></li>
+                          <li><a class="dropdown-item" href="#">Gezmeye Hazır mısın?</a></li>
+                          <li><a class="dropdown-item" href="#">Çarkı çevir, kupon kazan!</a></li>
+                          <li><a class="dropdown-item" href="#">Notification 4</a></li>
+                          <li><a class="dropdown-item" href="#"></a></li>
+                        </ul>
+                      </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-fill ps-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/templates/about.html">Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/templates/game.html">Çarkı Çevir</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Kayıt Ol / Giriş Yap</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Çıkış</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Detail Start -->
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 p-5">
+                <div class="card">
+                    <img src="/img/zipline-istanbul.jpg" class="card-img-top" alt="...">
+                    <div class="card-img-overlay">
+                    </div>
+                    <h5 class="card-title text-center">GÜNÜBİRLİK İSTANBUL KAÇAMAKLARI – MAX 1,5 SAAT MESAFEDEKİ YERLER
+                    </h5>
+                    <div class="card-body pt-0">
+                        <p class="card-text ps-5 pe-5">Yazının başında peşinen söyleyelim; İstanbul’un içindeki çoğu
+                            kaçamak yerleri ya “Burayı da mı keşfetmişler!” diye sitem edeceğiniz bakir ama yorulmuş
+                            doğa parçaları ya da insanların şehirden uzaklaşmak, kahvaltı yapmak ya da akşam yemeği
+                            yemek için gittiği ücra koylar ve köyler. Aslına bakarsanız buralardaki restoranlar pek de
+                            öyle parmak falan yedirtmiyor ama işte hava değişikliği olsun diye, bir parça çim ya da
+                            deniz havası için, mahallemizde olsa pek de uğramayacağımız yerleri tıka basa dolduruyoruz.
+                            Bazen bu yarım yamalak keyifler için mekanlara garip garip faturalar ödüyoruz. Ve işin en
+                            tuhafı, İstanbul’da sıkıştıkça buraları yine de öpüp başımıza koyuyoruz. 😀</p>
+                        <p class="card-text pe-5 ps-5">Tabii yazın bunlara deniz kaçamakları ve orman gezileri de
+                            ekleniyor. Ancak İstanbul plajlarında başkalarına saygısı olmayanlar nedeniyle rahat etmek
+                            mümkün değil. Havlunuzu serdiğiniz yere her an bir araba çekip yanınızda horon tepebilir,
+                            sizi mangal dumanına boğabilir, üzerinizde top oynayabilir vs… Dolayısı ile eğer yüzmeye
+                            niyetiniz varsa en iyisi bunu bir özel tesis bünyesinde yapmanız. Bir de müsilaj mevuzusu
+                            var tabii…</p>
+                    </div>
+                    <h5 class="card-title text-center"> İstanbul’dan Diğer Kaçış Önerileri</h5>
+                    <ul class="list-group list-group-flush pe-5 ps-5">
+                        <li class="list-group-item">1. İstanbul’dan Çıkmadan Resete Bas: <br>
+                            Gerçek anlamda bir tazelenmeye ihtiyacınız varsa buralarda bir ev tutarak tamamen
+                            uzaklaşmayı da bir düşünün: <a href="http://www.tatilbudur.com" target="_blank">İstanbul’da
+                                Doğa & Deniz Tatili İçin Kiralık Ev & Bungalovlar</a></li>
+                        <li class="list-group-item">2. İstanbul’un Keyfini Tekne Boğaz’a Açılarak Sür: <br>
+                            <a href="http://www.tatilbudur.com" target="_blank">İstanbul’da Günlük ve Saatlik
+                                Kiralanabilir Tekneler</a>
+                        </li>
+                        <li class="list-group-item">3. 1,5 – 3 saat Mesafedeki Alternatifler <br>
+                            Biraz daha yol yapıp İstanbul’dan çıkmayı gözünüz yerse de, <br>1,5 ila max 3 saat
+                            mesafedeki kaçamak yerlerinden de size güzel evleri derledik: <br>
+                            <a href="http://www.tatilbudur.com" target="_blank">İstanbul’a Yakın Bungalovlar ve Kiralık
+                                Evler</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Detail End -->
+
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-5 pe-5">
+                    <h6 class="mb-3">HAKKIMIZDA</h6>
+                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aliquam eaque
+                        harum officia, facere ipsam quod optio est excepturi, corrupti repudiandae nam expedita
+                        reiciendis vero obcaecati. Reiciendis ducimus impedit, in dolore atque quibusdam quod, hic
+                        aperiam quidem vitae error, deleniti labore et doloremque accusantium rem enim neque
+                        voluptatibus dolor explicabo.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-5 pe-5">
+                    <h6>İLÇELER</h6>
+                    <div class="footer">
+                        <div class="col">
+                            <ul id="ilce-listesi-1" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-2" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-3" class="footer-links"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-2 ms-0">
+                    <h6 class="">www.gezirehberim.com</h6>
+                    <ul class="footer-links">
+                        <li><a href="">Hakkımızda</a></li>
+                        <li><a href="">Kullanım Şartları</a></li>
+                        <li><a href="">Medyada Biz</a></li>
+                        <li><a href="">Gizlilik</a></li>
+                        <li><a href="">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="bi bi-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script src="/js/app.js"></script>
+</body>
+
+</html>

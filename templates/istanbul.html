@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Rehberim</title>
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Lottie  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .list-group-item {
+            cursor: pointer;
+            /* Liste öğelerine tıklanabilirlik ekler */
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            /* Hover rengini değiştirir */
+        }
+
+        .btn {
+            background: linear-gradient(360deg, #00bfff, #00ff7f);
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            color: white;
+        }
+
+        .scrollable-list {
+            max-height: 200px;
+            /* Yüksekliği ihtiyaca göre ayarlayın */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hava Durumu Start -->
+    <div id="id361ea65fd227e"
+        a='{"t":"g7bs","v":"1.2","lang":"tr","locs":[1474],"ssot":"c","sics":"ds","cbkg":"rgba(255,255,255,0)","cfnt":"rgb(0,0,0)","cend":"rgba(0,0,0,0)","slis":36,"slfs":17}'>
+        Hava Durumu Veri Kaynağı: <a
+            href="https://sharpweather.com/weather_istanbul/30_days/">sharpweather.com/weather_istanbul/30_days/</a>
+    </div>
+    <script async src="https://static1.sharpweather.com/widgetjs/?id=id361ea65fd227e"></script>
+    <!-- Hava Durumu End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="/templates/index.html"><img src="/img/icon.png" alt="Istanbul Image">Gezi
+                Rehberim </a>
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form id="search-form" class="d-flex mx-auto" role="search">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search"
+                        aria-label="Search">
+                </form>
+                <div id="search-results" class="mt-3"></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active me-2" aria-current="page" href="/templates/istanbul.html"><img
+                                src="/img/icon2.png" alt="Istanbul Image">İstanbul</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="/templates/plan.html">Plan Oluştur</a>
+                    </li>
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifications"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Kullanmadığın kupan var!</a></li>
+                            <li><a class="dropdown-item" href="#">Gezmeye Hazır mısın?</a></li>
+                            <li><a class="dropdown-item" href="#">Çarkı çevir, kupon kazan!</a></li>
+                            <li><a class="dropdown-item" href="#">Notification 4</a></li>
+                            <li><a class="dropdown-item" href="#"></a></li>
+                        </ul>
+                    </li>   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-fill ps-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/templates/about.html">Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/templates/game.html">Çarkı Çevir</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Kayıt Ol / Giriş Yap</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Çıkış</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- İstanbul Start-->
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h3 class="fw-bold fs-1">İstanbul Gezi Rehberi</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3 h-50">
+                <div class=" d-flex flex-column align-items-center">
+                    <div id="lottie" style="width: 230px; height: 230px;"></div>
+                </div>
+                <div class="card p-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title my-2">İlçe ve Kategori Seçimi</h5>
+                        <div class="form-group">
+                            <label>İlçe Seçimi:</label>
+                            <select id="ilceSelect" class="form-control my-2 ">
+                                <!-- İlçeler buraya JavaScript ile eklenecek -->
+                            </select>
+                        </div>
+                        <div class="form-group my-2">
+                            <label>Kategori Seçimi:</label>
+                            <div class="my-2" id="categoryFilters">
+                                <!-- Kategoriler buraya JavaScript ile eklenecek -->
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button id="filterButton" class="btn btn-primary">Filtrele</button>
+                        </div>
+                    </div>
+                </div>
+                   <!-- Modal Start -->
+            <div class="modal fade" id="mekanModal" tabindex="-1" aria-labelledby="mekanModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mekanModalLabel">Plan Oluştur</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body mx-2">
+                            <ul id="mekanList" class="list-group mt-3 list-unstyled">
+                                <!-- Filtrelenmiş mekanlar buraya eklenecek -->
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/templates/plan.html" type="button" class="btn btn-primary">Plan Oluştur</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal End -->
+            </div>
+            <div class="col-sm-12 col-md-9">
+                <div class="card">
+                    <img src="/img/istanbul.jpg" class="card-img-top" alt="..."
+                        style="width: 100%; height: auto; max-height: 200px; object-fit: cover;">
+                    <div class="card-body mb-5">
+                        <p class="card-text fs-6">
+                            İstanbul, tarih sahnesine çıktığı ilk devirlerden bu yana hep önemli bir şehirdi.
+                            Cumhuriyet’in kuruluşuna kadar başkent olma imtiyazını da hemen hemen her devirde üzerinde
+                            taşıdı. Bu nedenle, İstanbul’la ilgili şehircilik hizmetleri, çoğu kez kralları,
+                            imparatorları, padişahları ilgilendirdi.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            Osmanlı döneminde, şehirle ilgili hizmetlerden kadılar sorumluydu. Kadılar, şehirdeki bütün
+                            hizmetleri koordine ediyordu. Kadı’ya, bu görevlerinde Subaşı, Böcekbaşı, Çöplük Subaşısı,
+                            Mimarbaşı gibi yeniçeri ocağına bağlı zabit ve görevliler yardım etmekteydi. İstanbul’un ilk
+                            kadısı, Fetih’ten sonra tayin edilen Hızırbey Çelebi idi. Osmanlı devrinde İstanbul’da 422
+                            kadı görev yaptı. Bir ara, Belediye’nin işlevlerini İhtisap Nezareti üstlendi.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            Osmanlı devrinde bugünkü belediyelerin işlevini gören kurum Şehremaneti idi. Belediye
+                            başkanlarına Şehremini adı veriliyordu. Bugünkü anlamda bir şehir yönetiminin kurulması,
+                            Tanzimattan sonra, Kırım harbi sırasında, Osmanlı ile aynı saflarda yer alan müttefiklerin
+                            etkisiyle gündeme geldi. 1854’te, Meclis-i Vâlâ tarafından bir nizamname hazırlanarak,
+                            Dersaadet’te (Suriçi’nde) ve Bilâd-ı Selâse’de (Galata, Üsküdar ve Eyüp Sultan) Şehremaneti
+                            ünvanıyla yeni bir memuriyet ihdas edilmesi ve bir Şehir Meclisi kurulması kararlaştırıldı.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            İstanbul’un, 1855’te göreve gelen ilk Şehremini, Salih Paşa idi. 1877’de çıkarılan Vilâyât
+                            ve Dersaadet Belediye Kanunu İstanbul Şehremaneti’ni 20 belediye dairesine ayırıyordu.
+                            Şehremaneti’nin organları, Şehremini ve Şehremaneti Meclisi’ydi. Şehremaneti Meclisi,
+                            Padişah tarafından atanan 6 üye ve Şehremini ile birlikte 7 kişiden oluşuyordu.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            1913’te çıkarılan Dersaadet Teşkilat-ı Belediyesi Hakkında Kanun-ı Muvakkat, şehir
+                            yönetimini yeniden düzenledi. Bu düzenleme, diğer belediye dairelerini kaldırıyor,
+                            İstanbul’u tek bir belediye dairesi ve dokuz idare şubesi altında topluyordu. Şehremaneti
+                            Meclisi’nin yerine de Encümen-i Emanet kuruldu.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            Cumhuriyet kurulduktan sonra uzun süre belediye hizmetleri valilik tarafından yürütüldü. 3
+                            Nisan 1930’da çıkarılan 1580 sayılı belediyeler yasası ile belediye hizmetleri yeniden
+                            düzenlendi. İstanbul, belediyeye bağlı 10 şubeye ayrıldı. Şehremaneti ve Şehremini ünvanları
+                            kaldırıldı. Halk tarafından seçilen Cemiyet-i Umumiye-i Belediye ve özel idare işlerini
+                            yürüten Meclis-i Umumi-i Vilayet de kaldırılarak ikisinin yerine seçimle işbaşına gelen
+                            İstanbul Umumi Meclisi kuruldu.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            İstanbul’da, 1923’ten 1957 yılına kadar vilayet ve belediye hizmetleri valiliğin uhdesinde
+                            kaldı. 1 Mart 1957’de belediye ile özel idare tekrar birbirinden ayrıldı. Belediye ve özel
+                            idare işleri, halk tarafından seçilen Belediye Meclisi ve Vilayet Meclisi’nin yetki ve
+                            denetimine bırakıldı.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            27 Mayıs 1960 askeri müdahalesinin ertesi günü Belediye ve Vilayet meclisleri feshedildi.
+                            1961 Anayasası’yla belediye başkanlarının seçimle işbaşına gelmesi kuralı getirildi. 17
+                            Kasım 1963’te yerel seçimler yapıldı.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            İstanbul’da seçimle işbaşına gelen ilk belediye başkanı Haşim İşcan oldu. 4 Aralık 1981 günü
+                            çıkarılan 2561 sayılı yasa ile büyük şehirlerin yakın çevresindeki yerlerin ana belediyelere
+                            bağlanması kararlaştırıldı. 8 Mart 1984’te Büyükşehir Belediye Kararnamesi kabul edildi.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            Aynı yıl, 23 Mart’ta da Büyükşehir Belediyesi Yönetimi Hakkında Kanun Hükmünde Kararname
+                            yayımlandı. İstanbul, Ankara ve İzmir’de Büyükşehir Belediye Başkanlıkları kuruldu.
+                            İstanbul’da Seçimle işbaşına gelen Belediye Başkanları’nın yönetimi 12 Eylül 1980’e kadar
+                            devam etti.
+                        </p>
+
+                        <p class="card-text fs-6">
+                            1980-84 arasında, İstanbul askeri yönetim tarafından atanan başkanlar tarafından yönetildi.
+                            26 Mart 1984’ten beri İstanbul’un Belediye Başkanları seçimle göreve geliyor.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- İstanbul End-->
+
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-5 pe-5">
+                    <h6 class="mb-3">HAKKIMIZDA</h6>
+                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aliquam eaque
+                        harum officia, facere ipsam quod optio est excepturi, corrupti repudiandae nam expedita
+                        reiciendis vero obcaecati. Reiciendis ducimus impedit, in dolore atque quibusdam quod, hic
+                        aperiam quidem vitae error, deleniti labore et doloremque accusantium rem enim neque
+                        voluptatibus dolor explicabo.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-5 pe-5">
+                    <h6>İLÇELER</h6>
+                    <div class="footer">
+                        <div class="col">
+                            <ul id="ilce-listesi-1" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-2" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-3" class="footer-links"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-2  ms-0">
+                    <h6 class="">www.gezirehberim.com</h6>
+                    <ul class="footer-links">
+                        <li><a href="">Hakkımızda</a></li>
+                        <li><a href="">Kullanım Şartları</a></li>
+                        <li><a href="">Medyada Biz</a></li>
+                        <li><a href="">Gizlilik</a></li>
+                        <li><a href="">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="bi bi-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script src="/js/app.js"></script>
+    <!-- Animasyon Js -->
+    <script>
+        var anima = lottie.loadAnimation({
+            container: document.getElementById('lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/anigma.json' // JSON dosyasının doğru yolu
+        });
+
+        anima.addEventListener('DOMLoaded', function () {
+            console.log('Animasyon yüklendi!');
+        });
+
+        anima.addEventListener('data_failed', function () {
+            console.error('Animasyon verileri yüklenemedi.');
+        });
+    </script>
+</body>
+
+</html>

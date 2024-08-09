@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Rehberim</title>
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Takvim CSS -->
+    <style>
+        .calendar {
+            color: black;
+            padding: 50px 20px 50px 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 15px 2px #00bfff;
+
+        }
+
+        .calendar:hover {
+            box-shadow: 1px 1px 15px 2px #00ff7f;
+        }
+
+        .calendar table {
+            border-collapse: collapse;
+        }
+
+        .calendar th,
+        .calendar td {
+            border: none;
+            padding: 10px;
+            text-align: center;
+        }
+
+        td:hover {
+            background-color: #7b7bf0;
+        }
+
+        .cal-menu {
+            margin: auto;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .current-year,
+        .current-month,
+        #date {
+            font-size: large;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .current-year:hover,
+        .current-month:hover,
+        #date:hover,
+        #date>input:hover {
+            background: linear-gradient(90deg, #00bfff, #00ff7f);
+        }
+
+        .cal-body {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .previous,
+        .next {
+            margin-top: 100px;
+            cursor: pointer;
+        }
+
+        .previous>i,
+        .next>i {
+            padding: 5px;
+            background-color: #00bfff;
+        }
+
+        .previous>i:hover,
+        .next>i:hover {
+            box-shadow: 1px 1px 5px 1px #00bfff;
+
+        }
+
+        #date>input {
+            background-color: #00bfff;
+            border: 1px solid#00bfff;
+            border-radius: 3px;
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+
+        }
+
+        #date>input:hover {
+            border: 1px solid #7b7bf0;
+        }
+
+        .current-day {
+            background-color: #7b7bf0;
+        }
+
+        .current-day:hover {
+            background-color: #3a3ae6;
+        }
+
+        .prev-month {
+            color: #546d9c;
+        }
+
+        .next-month {
+            color: #546d9c;
+        }
+
+        @media only screen and (min-width: 1024px) {
+            .calendar {
+                min-width: 500px;
+                width: 40%;
+                padding: 50px 20px 50px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hava Durumu Start -->
+    <div id="id361ea65fd227e"
+        a='{"t":"g7bs","v":"1.2","lang":"tr","locs":[1474],"ssot":"c","sics":"ds","cbkg":"rgba(255,255,255,0)","cfnt":"rgb(0,0,0)","cend":"rgba(0,0,0,0)","slis":36,"slfs":17}'>
+        Hava Durumu Veri Kaynağı: <a
+            href="https://sharpweather.com/weather_istanbul/30_days/">sharpweather.com/weather_istanbul/30_days/</a>
+    </div>
+    <script async src="https://static1.sharpweather.com/widgetjs/?id=id361ea65fd227e"></script>
+    <!-- Hava Durumu End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="/templates/index.html"><img src="/img/icon.png" alt="Istanbul Image">Gezi
+                Rehberim </a>
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form id="search-form" class="d-flex mx-auto" role="search">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search"
+                        aria-label="Search">
+                </form>
+                <div id="search-results" class="mt-3"></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-2" aria-current="page" href="/templates/istanbul.html"><img
+                                src="/img/icon2.png" alt="Istanbul Image">İstanbul</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active me-2" href="/templates/plan.html">Plan Oluştur</a>
+                    </li>
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifications"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Kullanmadığın kupan var!</a></li>
+                            <li><a class="dropdown-item" href="#">Gezmeye Hazır mısın?</a></li>
+                            <li><a class="dropdown-item" href="#">Çarkı çevir, kupon kazan!</a></li>
+                            <li><a class="dropdown-item" href="#">Notification 4</a></li>
+                            <li><a class="dropdown-item" href="#"></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-fill ps-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/templates/about.html">Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/templates/game.html">Çarkı Çevir</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Kayıt Ol / Giriş Yap</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Çıkış</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Calender Start -->
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="calendar">
+                    <div class="cal-menu">
+                        <span id="month-year" class="current-month"></span> <span id="year" class="current-year"></span>
+
+                    </div>
+                    <div class="cal-body">
+                        <div class="previous"><i class="fa-solid fa-backward"></i></div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                    <th>Sun</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body"></tbody>
+                        </table>
+                        <div class="next"><i class="fa-solid fa-forward"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Calender End -->
+
+            <!-- Button Start -->
+            <div class="col-md-6">
+
+                <div class="card p-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title my-2">İlçe ve Kategori Seçimi</h5>
+                        <div class="form-group">
+                            <label>İlçe Seçimi:</label>
+                            <select id="ilceSelect" class="form-control my-2 ">
+                                <!-- İlçeler buraya JavaScript ile eklenecek -->
+                            </select>
+                        </div>
+                        <div class="form-group my-2">
+                            <label>Kategori Seçimi:</label>
+                            <div class="my-2" id="categoryFilters">
+                                <!-- Kategoriler buraya JavaScript ile eklenecek -->
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button id="filterButton" class="btn btn-primary">Filtrele</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Start -->
+            <div class="modal fade" id="mekanModal" tabindex="-1" aria-labelledby="mekanModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mekanModalLabel">Plan Oluştur</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body mx-2">
+                            <div class="mt-3">
+                                <span id="date"><input type="date" id="planDate"></span>
+                            </div>
+                            <ul id="mekanList" class="list-group mt-3 list-unstyled">
+                                <!-- Filtrelenmiş mekanlar buraya eklenecek -->
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="sendFormData()">Plan Oluştur</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal End -->
+
+
+        </div>
+        <div class="row">
+            <div class="col-12 mt-5">
+                <h2 class="text-center mb-4">İstanbul'un En Güzel Kaçamak Yerleri</h2>
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-5 pe-5">
+                    <h6 class="mb-3">HAKKIMIZDA</h6>
+                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aliquam eaque
+                        harum officia, facere ipsam quod optio est excepturi, corrupti repudiandae nam expedita
+                        reiciendis vero obcaecati. Reiciendis ducimus impedit, in dolore atque quibusdam quod, hic
+                        aperiam quidem vitae error, deleniti labore et doloremque accusantium rem enim neque
+                        voluptatibus dolor explicabo.</p>
+                </div>
+                <div class="col-xs-6 col-md-5">
+                    <h6 class="mb-3">İLÇELER</h6>
+                    <div class="row row-cols-3">
+                        <div class="col">
+                            <ul id="ilce-listesi-1" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-2" class="footer-links">
+                                <!-- İlçeler buraya dinamik olarak JavaScript ile eklenecek -->
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-3" class="footer-links"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2 ms-0">
+                    <h6 class="">www.gezirehberim.com</h6>
+                    <ul class="footer-links">
+                        <li><a href="">Hakkımızda</a></li>
+                        <li><a href="">Kullanım Şartları</a></li>
+                        <li><a href="">Medyada Biz</a></li>
+                        <li><a href="">Gizlilik</a></li>
+                        <li><a href="">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="bi bi-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script src="/js/app.js"></script>
+
+    <!-- Google Maps JS -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChQs440z4LwQYKnqmFaqMeq8OnQxiKaFs&callback=initMap"></script>
+    <script>
+        function initMap() {
+            var istanbul = { lat: 41.0082, lng: 28.9784 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: istanbul,
+                zoom: 12
+            });
+
+            var locations = [
+                // Adalar
+                { lat: 41.0662, lng: 28.9784, title: 'Büyükada' },
+                { lat: 41.1380, lng: 28.9890, title: 'Heybeliada' },
+                { lat: 41.0460, lng: 28.8133, title: 'Kınalıada' },
+
+                // Arnavutköy
+                { lat: 41.1710, lng: 28.9156, title: 'Karaburun Sahili' },
+                { lat: 41.1456, lng: 28.9791, title: 'Terkos Gölü' },
+                { lat: 41.1813, lng: 28.9451, title: 'Aziz Pabuççu Cami' },
+
+                // Ataşehir
+                { lat: 40.9933, lng: 29.1362, title: 'Watergarden İstanbul' },
+                { lat: 40.9981, lng: 29.1401, title: 'Mimar Sinan Camii' },
+                { lat: 40.9983, lng: 29.1375, title: 'Düştepe Oyun Müzesi' },
+
+                // Avcılar
+                { lat: 41.0606, lng: 28.6838, title: 'Avcılar Sahili' },
+                { lat: 41.0581, lng: 28.6945, title: 'Pelican Mall' },
+                { lat: 41.0601, lng: 28.6839, title: 'Barış Manço Kültür Merkezi' },
+
+                // Bağcılar
+                { lat: 41.0472, lng: 28.8592, title: 'Güneşli Park AVM' },
+                { lat: 41.0474, lng: 28.8603, title: '212 AVM' },
+                { lat: 41.0421, lng: 28.8554, title: 'Kirazlı Metro İstasyonu Çevresi' },
+
+                // Bahçelievler
+                { lat: 41.0080, lng: 28.8466, title: 'Bahçelievler Kültür Merkezi' },
+                { lat: 41.0074, lng: 28.8463, title: 'Metroport AVM' },
+                { lat: 41.0075, lng: 28.8465, title: 'İstanbul Aydın Üniversitesi Kampüsü' },
+
+                // Bakırköy
+                { lat: 40.9653, lng: 28.8661, title: 'Florya Atatürk Deniz Köşkü' },
+                { lat: 40.9649, lng: 28.8776, title: 'Capacity AVM' },
+                { lat: 40.9650, lng: 28.8680, title: 'Atatürk Ormanı' },
+
+                // Başakşehir
+                { lat: 41.0969, lng: 28.7242, title: 'Bahçeşehir Gölet Parkı' },
+                { lat: 41.0907, lng: 28.7250, title: 'Başakşehir Millet Bahçesi' },
+                { lat: 41.0897, lng: 28.7242, title: 'Mall of İstanbul' },
+
+                // Bayrampaşa
+                { lat: 41.0368, lng: 28.9276, title: 'Forum İstanbul AVM' },
+                { lat: 41.0330, lng: 28.9327, title: 'İsfanbul AVM' },
+                { lat: 41.0341, lng: 28.9267, title: 'Bayrampaşa Şehir Parkı' },
+
+                // Beşiktaş
+                { lat: 41.0390, lng: 28.3699, title: 'Dolmabahçe Sarayı' },
+                { lat: 41.0437, lng: 28.3794, title: 'Yıldız Parkı' },
+                { lat: 41.0877, lng: 29.0308, title: 'Bebek Sahili' },
+
+                // Beykoz
+                { lat: 41.1386, lng: 29.1377, title: 'Polonezköy Tabiat Parkı' },
+                { lat: 41.1505, lng: 29.1461, title: 'Küçüksu Kasrı' },
+                { lat: 41.1504, lng: 29.1566, title: 'Mihrabat Tabiat Parkı' },
+
+                // Beylikdüzü
+                { lat: 41.0102, lng: 28.6466, title: 'Yaşam Vadisi Parkı' },
+                { lat: 41.0051, lng: 28.6465, title: 'Beylikdüzü Sahili' },
+                { lat: 41.0128, lng: 28.6296, title: 'Marmara Park AVM' },
+
+                // Beyoğlu
+                { lat: 41.0256, lng: 28.9744, title: 'Galata Kulesi' },
+                { lat: 41.0376, lng: 28.9821, title: 'İstiklal Caddesi' },
+                { lat: 41.0272, lng: 28.9744, title: 'Pera Müzesi' },
+
+                // Büyükçekmece
+                { lat: 41.0166, lng: 28.6474, title: 'Büyükçekmece Sahili' },
+                { lat: 41.0236, lng: 28.6352, title: 'Tüyap Fuar ve Kongre Merkezi' },
+                { lat: 41.0140, lng: 28.6365, title: 'Mimar Sinan Köprüsü' },
+
+                // Çatalca
+                { lat: 41.3164, lng: 28.4144, title: 'İnceğiz Mağaraları' },
+                { lat: 41.2925, lng: 28.4431, title: 'Çilingoz Tabiat Parkı' },
+                { lat: 41.3080, lng: 28.4131, title: 'Elbasan Köyü' },
+
+                // Çekmeköy
+                { lat: 41.0464, lng: 29.1803, title: 'Taşdelen Mesire Alanı' },
+                { lat: 41.0481, lng: 29.1740, title: 'Alemdağ Ormanı' },
+                { lat: 41.0513, lng: 29.1724, title: 'Özyeğin Üniversitesi Kampüsü' },
+
+                // Esenler
+                { lat: 41.0960, lng: 28.8868, title: 'Esenler Kültür Merkezi' },
+                { lat: 41.0951, lng: 28.8892, title: 'Dörtyol Meydanı' },
+                { lat: 41.0984, lng: 28.8906, title: 'Havaalanı Mahallesi Parkı' },
+
+                // Esenyurt
+                { lat: 41.0416, lng: 28.6238, title: 'Torium AVM' },
+                { lat: 41.0411, lng: 28.6209, title: 'Esenyurt Belediyesi Kültür Merkezi' },
+                { lat: 41.0396, lng: 28.6243, title: 'Recep Tayyip Erdoğan Parkı' },
+
+                // Eyüpsultan
+                { lat: 41.0706, lng: 28.9260, title: 'Eyüp Sultan Camii' },
+                { lat: 41.0742, lng: 28.9227, title: 'Pierre Loti Tepesi' },
+                { lat: 41.0723, lng: 28.9216, title: 'Eyüp Sultan Parkı' },
+
+                // Fatih
+                { lat: 41.0082, lng: 28.9784, title: 'Sultanahmet Meydanı' },
+                { lat: 41.0090, lng: 28.9653, title: 'Ayasofya' },
+                { lat: 41.0078, lng: 28.9796, title: 'Topkapı Sarayı' },
+
+                // Gaziosmanpaşa
+                { lat: 41.0656, lng: 28.9210, title: 'Gazi Osman Paşa Meydanı' },
+                { lat: 41.0670, lng: 28.9213, title: 'Gazi Mustafa Kemal Parkı' },
+                { lat: 41.0645, lng: 28.9208, title: 'Eyüp Sultan Camii Çevresi' },
+
+                // Kadıköy
+                { lat: 40.9905, lng: 29.0278, title: 'Moda Sahili' },
+                { lat: 40.9926, lng: 29.0273, title: 'Kadıköy Çarşısı' },
+                { lat: 40.9901, lng: 29.0292, title: 'Fenerbahçe Parkı' },
+
+                // Kartal
+                { lat: 40.8836, lng: 29.2141, title: 'Kartal Sahili' },
+                { lat: 40.8786, lng: 29.2151, title: 'Yakacık Merkez Parkı' },
+                { lat: 40.8877, lng: 29.2102, title: 'Kartal Belediye Binası' },
+
+                // Küçükçekmece
+                { lat: 41.0223, lng: 28.7850, title: 'Küçükçekmece Gölü' },
+                { lat: 41.0207, lng: 28.7862, title: 'Atatürk Parkı' },
+                { lat: 41.0265, lng: 28.7836, title: 'Cennet Mahallesi Parkı' },
+
+                // Maltepe
+                { lat: 40.9297, lng: 29.1662, title: 'Maltepe Parkı' },
+                { lat: 40.9311, lng: 29.1626, title: 'Maltepe Sahili' },
+                { lat: 40.9278, lng: 29.1601, title: 'Marmara Üniversitesi Kampüsü' },
+
+                // Pendik
+                { lat: 40.8683, lng: 29.2978, title: 'Pendik Marina' },
+                { lat: 40.8674, lng: 29.3027, title: 'Pendik Parkı' },
+                { lat: 40.8701, lng: 29.2909, title: 'Pendik Çamlık Parkı' },
+
+                // Sancaktepe
+                { lat: 41.0164, lng: 29.1917, title: 'Sancaktepe Şehitler Parkı' },
+                { lat: 41.0149, lng: 29.1890, title: 'Sancaktepe Belediyesi Kültür Merkezi' },
+                { lat: 41.0201, lng: 29.1955, title: 'Çamlık Parkı' },
+
+                // Şişli
+                { lat: 41.0584, lng: 28.9906, title: 'Şişli Meydanı' },
+                { lat: 41.0596, lng: 28.9897, title: 'Cevahir AVM' },
+                { lat: 41.0549, lng: 28.9864, title: 'Macka Parkı' },
+
+                // Üsküdar
+                { lat: 41.0262, lng: 29.0063, title: 'Üsküdar Sahili' },
+                { lat: 41.0284, lng: 29.0061, title: 'Kız Kulesi' },
+                { lat: 41.0276, lng: 29.0057, title: 'Mihrimah Sultan Camii' },
+
+                // Zeytinburnu
+                { lat: 41.0224, lng: 28.8954, title: 'Zeytinburnu Sahili' },
+                { lat: 41.0251, lng: 28.8986, title: 'Ataköy Marina' },
+                { lat: 41.0237, lng: 28.8901, title: 'Aqua Florya AVM' }
+            ];
+
+
+            locations.forEach(function (location) {
+                new google.maps.Marker({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.title,
+
+                });
+            });
+        }
+    </script>
+
+    <!-- JS -->
+    <script>
+        function sendFormData() {
+            const date = document.getElementById('planDate').value;
+            const mekanList = document.querySelectorAll('#mekanList li');
+            const places = [];
+            mekanList.forEach(item => places.push(item.textContent));
+
+            // URL parametrelerini oluştur
+            const params = new URLSearchParams();
+            if (date) {
+                params.append('date', date);
+            }
+            if (places.length > 0) {
+                params.append('places', places.join(','));
+            }
+
+            // travel.html sayfasına yönlendir
+            window.location.href = `travel.html?${params.toString()}`;
+        }
+    </script>
+    <!-- Takvim JS -->
+    <script>
+        let currentYear, currentMonth, currentDay;
+        let monthYearHeader = document.getElementById("month-year");
+        let yearHeader = document.getElementById("year");
+
+        function generateCalendar(year, month, day) {
+            const calendarBody = document.getElementById("calendar-body");
+
+            // Önceki takvimi temizle
+            calendarBody.innerHTML = "";
+
+            // Geçerli ayın ilk günü için bir tarih nesnesi oluştur
+            const firstDay = new Date(year, month, 1);
+
+            // Geçerli ayın gün sayısını al
+            const lastDay = new Date(year, month + 1, 0);
+
+            // Başlığı ay ve yılı gösterecek şekilde ayarla
+            monthYearHeader.innerText = `${firstDay.toLocaleString("default", {
+                month: "long"
+            })}`;
+            yearHeader.innerText = `${year}`;
+
+            // Ay içindeki her hafta için bir satır oluştur
+            let currentRow = document.createElement("tr");
+
+            // Önceki ayın hücrelerini doldur
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                const cell = document.createElement("td");
+                const prevMonthLastDate = new Date(year, month, 0).getDate();
+                cell.innerText = prevMonthLastDate - firstDay.getDay() + i + 1;
+                cell.classList.add("prev-month");
+                currentRow.appendChild(cell);
+            }
+
+            // Geçerli ayın günlerini doldur
+            for (let currDay = 1; currDay <= lastDay.getDate(); currDay++) {
+                const cell = document.createElement("td");
+                cell.innerText = currDay;
+
+                // Geçerli günü işaretle
+                if (
+                    currDay === day &&
+                    year === new Date().getFullYear() &&
+                    month === new Date().getMonth()
+                ) {
+                    cell.classList.add("current-day");
+                }
+
+                // Tarih giriş değerini ve currentDay'i güncellemek için tıklama olay dinleyicisi ekle
+                cell.addEventListener("click", function () {
+                    const selectedDate = new Date(year, month, currDay);
+                    dateInput.value = selectedDate.toISOString().slice(0, 10);
+                    currentDay = currDay; // currentDay'i güncelle
+                    generateCalendar(currentYear, currentMonth, currentDay); // currentDay ile takvimi yeniden oluştur
+                });
+
+                currentRow.appendChild(cell);
+
+                // Her hafta için yeni bir satır başlat
+                if (currentRow.children.length === 7) {
+                    calendarBody.appendChild(currentRow);
+                    currentRow = document.createElement("tr");
+                }
+            }
+
+            // Sonraki ayın hücrelerini doldur
+            const nextMonthDays = 6 - lastDay.getDay();
+            for (let i = 0; i < nextMonthDays; i++) {
+                const cell = document.createElement("td");
+                cell.innerText = i + 1;
+                cell.classList.add("next-month");
+                currentRow.appendChild(cell);
+            }
+
+            // Son satırı takvime ekle
+            calendarBody.appendChild(currentRow);
+        }
+
+        // Geçerli aya tıklamayı yönetmek için tüm ayları göster
+        monthYearHeader.addEventListener("click", function () {
+            const monthPicker = prompt("Bir ay girin (1-12):");
+            if (monthPicker !== null) {
+                const selectedMonth = parseInt(monthPicker, 10) - 1;
+                if (!isNaN(selectedMonth) && selectedMonth >= 0 && selectedMonth <= 11) {
+                    currentMonth = selectedMonth;
+
+                    // Ay değiştirildiğinde tarih giriş değerini güncelle
+                    const selectedDate = new Date(currentYear, currentMonth, currentDay);
+                    dateInput.value = selectedDate.toISOString().slice(0, 10);
+
+                    generateCalendar(currentYear, currentMonth, currentDay);
+                } else {
+                    alert("Geçersiz ay. Lütfen 1 ile 12 arasında bir sayı girin.");
+                }
+            }
+        });
+
+        // Geçerli yıla tıklamayı yönetmek için geçmiş ve gelecekte gezin
+        yearHeader.addEventListener("click", function () {
+            const yearPicker = prompt("Bir yıl girin:");
+            if (yearPicker !== null) {
+                // Girilen yılın en az 4 haneli olduğundan emin olun
+                if (/^\d{4}$/.test(yearPicker)) {
+                    const selectedYear = parseInt(yearPicker, 10);
+                    if (!isNaN(selectedYear)) {
+                        currentYear = selectedYear;
+
+                        // Yıl değiştirildiğinde tarih giriş değerini güncelle
+                        const selectedDate = new Date(currentYear, currentMonth, currentDay);
+                        dateInput.value = selectedDate.toISOString().slice(0, 10);
+
+                        generateCalendar(currentYear, currentMonth, currentDay);
+                    } else {
+                        alert("Geçersiz yıl. Lütfen geçerli bir yıl girin.");
+                    }
+                } else {
+                    alert("Geçersiz yıl formatı. Lütfen 4 haneli bir yıl girin.");
+                }
+            }
+        });
+
+        // Tarih giriş referanslarını al ve varsayılan değerini geçerli tarih olarak ayarla
+        const dateInput = document.querySelector("input[type='date']");
+        const currentDate = new Date();
+        dateInput.value = currentDate.toISOString().slice(0, 10);
+
+        // Tarih değiştiğinde takvimi güncellemek için tarih girişe bir olay dinleyici ekle
+        dateInput.addEventListener("change", function () {
+            const selectedDate = new Date(this.value);
+            currentYear = selectedDate.getFullYear();
+            currentMonth = selectedDate.getMonth();
+            currentDay = selectedDate.getDate();
+            generateCalendar(currentYear, currentMonth, currentDay);
+        });
+
+        // Geçerli tarih için takvimi oluşturmak üzere fonksiyonu çağır
+        currentYear = currentDate.getFullYear();
+        currentMonth = currentDate.getMonth();
+        currentDay = currentDate.getDate();
+        generateCalendar(currentYear, currentMonth, currentDay);
+
+        // "Önceki" ve "Sonraki" butonlarına referans al
+        let prev = document.querySelector(".previous"),
+            next = document.querySelector(".next");
+
+        // "Önceki" butonu için olay dinleyici
+        prev.addEventListener("click", function () {
+            currentMonth--;
+
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+
+            // Tarih giriş değerini güncelle
+            const newDate = new Date(currentYear, currentMonth, currentDay);
+            dateInput.value = newDate.toISOString().slice(0, 10);
+
+            generateCalendar(currentYear, currentMonth, currentDay);
+        });
+
+        // "Sonraki" butonu için olay dinleyici
+        next.addEventListener("click", function () {
+            currentMonth++;
+
+            if (currentMonth > 11) {
+                currentMonth = 0; // Ocak
+                currentYear++;
+            }
+
+            // Tarih giriş değerini güncelle
+            const newDate = new Date(currentYear, currentMonth, currentDay);
+            dateInput.value = newDate.toISOString().slice(0, 10);
+
+            generateCalendar(currentYear, currentMonth, currentDay);
+        });
+
+        function generateCalendar(year, month, day) {
+            const calendarBody = document.getElementById("calendar-body");
+
+            // Önceki takvimi temizle
+            calendarBody.innerHTML = "";
+
+            // Geçerli ayın ilk günü için bir tarih nesnesi oluştur
+            const firstDay = new Date(year, month, 1);
+
+            // Geçerli ayın gün sayısını al
+            const lastDay = new Date(year, month + 1, 0);
+
+            // Başlığı ay ve yılı gösterecek şekilde ayarla
+            monthYearHeader.innerText = `${firstDay.toLocaleString("default", {
+                month: "long"
+            })}`;
+            yearHeader.innerText = `${year}`;
+
+            // Ay içindeki her hafta için bir satır oluştur
+            let currentRow = document.createElement("tr");
+
+            // Önceki ayın hücrelerini doldur
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                const cell = document.createElement("td");
+                const prevMonthLastDate = new Date(year, month, 0).getDate();
+                cell.innerText = prevMonthLastDate - firstDay.getDay() + i + 1;
+                cell.classList.add("prev-month");
+                currentRow.appendChild(cell);
+            }
+
+            // Geçerli ayın günlerini doldur
+            for (let currDay = 1; currDay <= lastDay.getDate(); currDay++) {
+                const cell = document.createElement("td");
+                cell.innerText = currDay;
+
+                // Geçerli günü işaretle
+                if (
+                    currDay === day &&
+                    year === new Date().getFullYear() &&
+                    month === new Date().getMonth()
+                ) {
+                    cell.classList.add("current-day");
+                }
+
+                // Tarih giriş değerini ve currentDay'i güncellemek için tıklama olay dinleyicisi ekle
+                cell.addEventListener("click", function () {
+                    const selectedDate = new Date(year, month, currDay);
+                    // toLocaleDateString ile tarih formatını yyyy-mm-dd olarak ayarla
+                    const formattedDate = selectedDate.toLocaleDateString('en-CA');
+                    dateInput.value = formattedDate;
+                    currentDay = currDay; // currentDay'i güncelle
+                    generateCalendar(currentYear, currentMonth, currentDay); // currentDay ile takvimi yeniden oluştur
+                });
+
+                currentRow.appendChild(cell);
+
+                // Her hafta için yeni bir satır başlat
+                if (currentRow.children.length === 7) {
+                    calendarBody.appendChild(currentRow);
+                    currentRow = document.createElement("tr");
+                }
+            }
+
+            // Sonraki ayın hücrelerini doldur
+            const nextMonthDays = 6 - lastDay.getDay();
+            for (let i = 0; i < nextMonthDays; i++) {
+                const cell = document.createElement("td");
+                cell.innerText = i + 1;
+                cell.classList.add("next-month");
+                currentRow.appendChild(cell);
+            }
+
+            // Son satırı takvime ekle
+            calendarBody.appendChild(currentRow);
+        }
+
+
+    </script>
+
+</body>
+
+</html>

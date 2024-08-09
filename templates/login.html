@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Rehberim</title>
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300);
+
+        /* GENERAL RESETS */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #4fda8c;
+        }
+
+        /* BODY */
+        body {
+            position: relative;
+            color: #666;
+            font: 16px/26px "Raleway", sans-serif;
+            text-align: center;
+            height: 100%;
+            background: linear-gradient(270deg,
+                    rgba(34, 46, 64, 1) 0%,
+                    rgba(81, 195, 184, 1) 100%);
+            overflow: hidden;
+        }
+
+        /* BUTTON */
+        a.button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            height: auto;
+            padding: 0.8rem 1rem;
+            font-size: 0.8rem;
+            line-height: normal;
+            text-transform: uppercase;
+            font-family: "Proxima Nova", sans-serif;
+            font-weight: 700;
+            letter-spacing: 0;
+            border-radius: 0;
+            border: 1px solid #2d515c;
+            text-decoration: none;
+            color: #fff;
+            background-color: transparent;
+            transition: all 0.2s ease-in-out;
+        }
+
+        a.button:hover {
+            border-color: #2d515c;
+            color: #fff;
+            padding: 1rem 3.2rem;
+        }
+
+        @media only screen and (min-width: 22em) {
+            a.button {
+                padding: 1rem 2.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* LOGIN */
+        .login {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        /* WRAP */
+        .wrap {
+            position: static;
+            margin: auto;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .wrap:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* LOGO */
+        .logo {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background: #4fc1b7;
+        }
+
+        .logo img {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+        }
+
+        .logo a {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* USER (FORM WRAPPER) */
+        .user {
+            position: relative;
+            z-index: 0;
+            float: none;
+            margin: 0 auto;
+            padding-top: 40px;
+            width: 100%;
+            height: 100vh;
+            overflow: auto;
+            background: linear-gradient(42deg,
+                    rgba(42, 46, 54, 1) 0%,
+                    rgba(97, 107, 125, 1) 100%);
+            box-shadow: none;
+            border-radius: 0;
+            border-top: 1px solid #4fc1b7;
+        }
+
+        .user .actions {
+            margin: 1em 0 0;
+            padding-right: 10px;
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .user .actions a {
+            margin: 1em 0;
+            width: 90px;
+            display: inline-block;
+            padding: 0.2em 0em;
+            background-color: #5c6576;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.8em;
+            border-radius: 30px 0 0 30px;
+            box-shadow: 0px 0px 27px -9px rgba(0, 0, 0, 0.75);
+        }
+
+        .user .actions a:last-child {
+            color: #fff;
+            border-radius: 0 30px 30px 0;
+            background-color: #28a55f;
+            background: linear-gradient(180deg,
+                    rgba(105, 221, 201, 1) 0%,
+                    rgba(78, 193, 182, 1) 100%);
+        }
+
+        /* TERMS */
+        @keyframes show_terms {
+            0% {
+                opacity: 0;
+                transform: translateY(-110%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes hide_terms {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110%);
+                opacity: 0;
+            }
+        }
+
+        .terms,
+        .recovery {
+            position: absolute;
+            z-index: 3;
+            margin: 40px 0 0;
+            padding: 1.5em 1em;
+            width: 100%;
+            height: calc(100% - 40px);
+            border-radius: 0;
+            background: #fff;
+            text-align: left;
+            overflow: auto;
+            will-change: transform;
+            transform: translateY(-110%);
+            opacity: 0;
+            border-radius: 0;
+        }
+
+        .terms.open,
+        .recovery.open {
+            transform: translateY(0);
+            animation: show_terms 0.5s 0.2s 1 ease normal forwards;
+        }
+
+        .terms.closed,
+        .recovery.closed {
+            transform: translateY(0);
+            opacity: 1;
+            animation: hide_terms 0.6s 0.2s 1 ease normal forwards;
+        }
+
+        .terms p,
+        .recovery p {
+            margin: 1em 0;
+            font-size: 0.9em;
+        }
+
+        .terms h3,
+        .recovery h3 {
+            margin: 2em 0 0.2em;
+        }
+
+        .terms p.small {
+            margin: 0 0 1.5em;
+            font-size: 0.8em;
+        }
+
+        .recovery form .input {
+            margin: 0 0 0.8em 0;
+            padding: 0.8em 2em 10px 0;
+            width: 100%;
+            display: inline-block;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid #5a6374;
+            outline: 0;
+            box-sizing: border-box;
+            color: inherit;
+            font-family: inherit;
+            color: #666;
+        }
+
+        .recovery form .button {
+            margin: 1em 0;
+            padding: 0.2em 3em;
+            width: auto;
+            display: block;
+            background-color: #28a55f;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.8em;
+            border-radius: 0px;
+            background: rgba(62, 181, 169, 1) 0%;
+        }
+
+        .form-wrap form .button:hover {
+            background-color: #4fda8c;
+        }
+
+        .recovery p.mssg {
+            opacity: 0;
+            transition: opacity 1s 0.5s ease;
+        }
+
+        .recovery p.mssg.animate {
+            opacity: 1;
+        }
+
+        /* CONTENT */
+        .content {
+            position: fixed;
+            z-index: 1;
+            float: none;
+            margin: 0 auto;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(0deg,
+                    rgba(62, 181, 169, 1) 0%,
+                    rgba(111, 226, 204, 1) 100%);
+            box-shadow: none;
+            overflow: hidden;
+        }
+
+        /* TOGGLE */
+        #toggle-wrap {
+            position: absolute;
+            z-index: 4;
+            top: 40px;
+            right: 17px;
+            width: 80px;
+            height: 1px;
+        }
+
+        #toggle-terms span {
+            background: #fff;
+            border-radius: 0;
+        }
+
+        /* TOGGLE TERMS */
+        #toggle-terms {
+            position: absolute;
+            z-index: 4;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            margin: auto;
+            display: block;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 100%;
+            opacity: 0;
+            transform: translate(-6px, 20px);
+        }
+
+        /* CIRCLE EFFECT */
+        #toggle-terms:after {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 50%;
+            content: "";
+            box-sizing: content-box;
+        }
+
+        #toggle-terms:before {
+            speak: none;
+            display: block;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #toggle-terms {
+            box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        #toggle-terms:after {
+            top: 0px;
+            left: 0px;
+            padding: 0;
+            z-index: -1;
+            background: rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, opacity 0.3s;
+        }
+
+        #toggle-terms.closed {
+            color: rgba(0, 0, 0, 0.2);
+        }
+
+        #toggle-terms.closed:after {
+            transform: scale(1.6);
+            opacity: 0;
+        }
+
+        /* CLOSE ANIMATION*/
+        @keyframes show_close {
+            0% {
+                opacity: 0;
+                transform: translate(-6px, -100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(-6px, 20px);
+            }
+        }
+
+        @keyframes hide_close {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        #toggle-terms.open {
+            animation: show_close 0.4s 0.5s 1 ease normal forwards;
+        }
+
+        #toggle-terms.closed {
+            animation: hide_close 0.2s 0s 1 ease normal forwards;
+        }
+
+        #toggle-terms:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* TOGGLE TERMS CROSS */
+        #toggle-terms #cross {
+            position: absolute;
+            z-index: 4;
+            height: 100%;
+            width: 100%;
+            transform: rotate(0deg);
+        }
+
+        #toggle-terms.open #cross {
+            transition-delay: 0.9s;
+            transition-duration: 0.2s;
+            transform: rotate(45deg);
+        }
+
+        #toggle-terms.open #cross span {
+            position: absolute;
+            z-index: 4;
+            transition-delay: 0s;
+            transition-duration: 0s;
+        }
+
+        #toggle-terms.open #cross span:nth-child(1) {
+            top: 15%;
+            left: 19px;
+            height: 70%;
+            width: 1px;
+        }
+
+        #toggle-terms.open #cross span:nth-child(2) {
+            left: 15%;
+            top: 19px;
+            width: 70%;
+            height: 1px;
+        }
+
+        #toggle-terms #cross span:nth-child(1) {
+            height: 0;
+            transition-delay: 0.625s;
+        }
+
+        #toggle-terms #cross span:nth-child(2) {
+            width: 0;
+            transition-delay: 0.375s;
+        }
+
+        /* SLIDESHOW */
+        #slideshow {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            border-radius: 10px 0 0 10px;
+        }
+
+        #slideshow h2 {
+            margin: 0em auto 0em auto;
+            text-align: center;
+            font-size: 1.4em;
+            color: #fff;
+            line-height: 0.5em;
+        }
+
+        #slideshow p {
+            color: #fff;
+            display: none;
+        }
+
+        #slideshow div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1em 3em;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #slideshow .one {
+            background-image: url("http://res.cloudinary.com/dpcloudinary/image/upload/v1506186248/dots.png");
+            background-repeat: no-repeat;
+            background-position: 0% 50%;
+        }
+
+        #slideshow .two {
+            background-image: url("http://res.cloudinary.com/dpcloudinary/image/upload/v1506186248/gears.png");
+            background-repeat: no-repeat;
+            background-position: 0% 50%;
+        }
+
+        #slideshow .three {
+            background-image: url("http://res.cloudinary.com/dpcloudinary/image/upload/v1506186248/splat.png");
+            background-repeat: no-repeat;
+            background-position: 0% 5%;
+        }
+
+        #slideshow .four {
+            background-image: url("http://res.cloudinary.com/dpcloudinary/image/upload/v1506186248/ray.png");
+            background-repeat: no-repeat;
+            background-position: 0% 50%;
+        }
+
+        /* FORM ELEMENTS */
+        input {
+            font: 16px/26px "Raleway", sans-serif;
+        }
+
+        .form-wrap {
+            width: 100%;
+            margin: 2em auto 0;
+        }
+
+        .form-wrap a {
+            color: #ccc;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #5fd1c1;
+        }
+
+        .form-wrap a:hover {
+            color: #fff;
+        }
+
+        .form-wrap .tabs {
+            overflow: hidden;
+        }
+
+        .form-wrap .tabs * {
+            transition: 0.25s ease-in-out;
+        }
+
+        .form-wrap .tabs h3 {
+            float: left;
+            width: 50%;
+        }
+
+        .form-wrap .tabs h3 a {
+            padding: 0.5em 0;
+            text-align: center;
+            font-weight: 400;
+            display: block;
+            color: #999;
+            border: 0;
+        }
+
+        .form-wrap .tabs h3 a.active {
+            color: #ccc;
+        }
+
+        .form-wrap .tabs h3 a.active span {
+            padding-bottom: 4px;
+            border-bottom: 1px solid #5fd1c1;
+        }
+
+        .form-wrap .tabs-content {
+            padding: 1.5em 3em;
+            text-align: left;
+            width: auto;
+        }
+
+        .help-action {
+            padding: 0.4em 0 0;
+            font-size: 0.93em;
+        }
+
+        .form-wrap .tabs-content div[id$="tab-content"] {
+            display: none;
+        }
+
+        .form-wrap .tabs-content .active {
+            display: block !important;
+        }
+
+        .form-wrap form .input {
+            margin: 0 0 0.8em 0;
+            padding: 0.8em 2em 10px 0;
+            width: 100%;
+            display: inline-block;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid #5a6374;
+            outline: 0;
+            box-sizing: border-box;
+            color: inherit;
+            font-family: inherit;
+            color: #fff;
+        }
+
+        .form-wrap form .button {
+            margin: 1em 0;
+            padding: 0.2em 3em;
+            width: auto;
+            display: block;
+            background-color: #28a55f;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.8em;
+            border-radius: 30px;
+            background: linear-gradient(180deg,
+                    rgba(105, 221, 201, 1) 0%,
+                    rgba(78, 193, 182, 1) 100%);
+            box-shadow: 0px 0px 37px -9px rgba(0, 0, 0, 0.75);
+        }
+
+        .form-wrap form .button:hover {
+            background-color: #4fda8c;
+        }
+
+        .form-wrap form .checkbox {
+            margin: 1em 0;
+            padding: 20px;
+            visibility: hidden;
+            text-align: left;
+        }
+
+        .form-wrap form .checkbox:checked+label:after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: alpha(opacity=100);
+            opacity: 1;
+        }
+
+        .form-wrap form label[for] {
+            position: relative;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+        .form-wrap form label[for]:before {
+            position: absolute;
+            width: 17px;
+            height: 17px;
+            top: 0px;
+            left: -14px;
+            content: "";
+            border: 1px solid #5a6374;
+        }
+
+        .form-wrap form label[for]:after {
+            position: absolute;
+            top: 1px;
+            left: -10px;
+            width: 15px;
+            height: 8px;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: alpha(opacity=0);
+            opacity: 0;
+            content: "";
+            background-color: transparent;
+            border: solid #67dac6;
+            border-width: 0 0 3px 3px;
+            transform: rotate(-45deg);
+        }
+
+        .form-wrap .help-text {
+            margin-top: 0.6em;
+        }
+
+        .form-wrap .help-text p {
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .fa {
+            display: none;
+        }
+
+        /* MEDIUM VIEWPORT */
+        @media only screen and (min-width: 40em) {
+
+            /* GLOBAL TRANSITION */
+            * {
+                /*transition: .25s ease-in-out;*/
+            }
+
+            /* WRAP */
+            .wrap {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 600px;
+                height: 500px;
+                margin: auto;
+                border-radius: 10px;
+            }
+
+            /* LOGO */
+            .logo {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                background: none;
+            }
+
+            .logo img {
+                width: 100%;
+            }
+
+            @keyframes show_close {
+                0% {
+                    opacity: 0;
+                    transform: translate(-6px, -100px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translate(-6px, 18px);
+                }
+            }
+
+            /* TOGGLE WRAP */
+            #toggle-wrap {
+                top: 60px;
+                right: calc(50% + 17px);
+                height: 80px;
+                overflow: hidden;
+            }
+
+            #toggle-wrap.closed {
+                width: 50%;
+            }
+
+            /* TOGGLE TERMS */
+            #toggle-terms {
+                opacity: 1;
+                transform: translate(-6px, -100px);
+            }
+
+            #toggle-terms.closed {
+                opacity: 1;
+                transform: translate(-6px, 18px);
+            }
+
+            /* SLIDESHOW */
+            #slideshow h2 {
+                margin: 4.5em 0 1em;
+                font-size: 2em;
+            }
+
+            #slideshow h2 span {
+                padding: 5px 0;
+                border: solid #b6ede3;
+                border-width: 1px 0;
+            }
+
+            #slideshow p {
+                display: block;
+            }
+
+            #slideshow div {
+                background-size: auto;
+            }
+
+            #slideshow .one {
+                background-position: 50% 130%;
+            }
+
+            #slideshow .two {
+                background-position: 50% 200%;
+            }
+
+            #slideshow .three {
+                background-position: 50% 300%;
+            }
+
+            #slideshow .four {
+                background-position: -40% -80%;
+            }
+
+            /* CONTENT */
+            .content,
+            .content.full {
+                position: relative;
+                float: left;
+                width: 50%;
+                height: 500px;
+                box-shadow: -3px 0px 45px -6px rgba(56, 75, 99, 0.61);
+                border-radius: 10px 0 0 10px;
+            }
+
+            /* TERMS */
+            .terms,
+            .recovery {
+                position: absolute;
+                width: 50%;
+                height: 440px;
+                float: left;
+                margin: 60px 0 0;
+                box-shadow: -3px 0px 45px -6px rgba(56, 75, 99, 0.61);
+                border-radius: 0 0 0 10px;
+            }
+
+            /* USER (FORM WRAPPER) */
+            .user {
+                padding-top: 0;
+                float: left;
+                width: 50%;
+                height: 500px;
+                box-shadow: -3px 0px 45px -6px rgba(56, 75, 99, 0.61);
+                border-radius: 0 10px 10px 0;
+                border: 0;
+            }
+
+            .user .actions {
+                margin: 0;
+                text-align: right;
+            }
+
+            /* FORM ELEMENTS */
+            .form-wrap {
+                margin: 3em auto 0;
+            }
+
+            .form-wrap .tabs-content {
+                padding: 1.5em 2.5em;
+            }
+
+            .tabs-content p {
+                position: relative;
+            }
+
+            /* ARROW */
+            .tabs-content .fa {
+                position: absolute;
+                top: 8px;
+                left: -16px;
+                display: block;
+                font-size: 0.8em;
+                color: #fff;
+                opacity: 0.3;
+                transform: translate(0, 0);
+                transition: transform 0.3s 0.3s ease, opacity 0.6s 0s ease;
+            }
+
+            .tabs-content .fa.active {
+                transform: translate(-3px, 0);
+                opacity: 0.8;
+            }
+
+            .tabs-content .fa.inactive {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+        }
+
+        /* LARGE VIEWPORT */
+        @media only screen and (min-width: 60em) {
+
+            /* WRAP */
+            .wrap {
+                width: 900px;
+                height: 550px;
+            }
+
+            /* CONTENT */
+            .content,
+            .content.full {
+                height: 550px;
+            }
+
+            .terms,
+            .recovery {
+                height: 490px;
+            }
+
+            /* SLIDESHOW */
+            #slideshow h2 {
+                margin: 4em 0 1em;
+                font-size: 3em;
+            }
+
+            #slideshow .four {
+                background-position: -82% -330%;
+            }
+
+            /* USER (FORM WRAPPER) */
+            .user {
+                height: 550px;
+            }
+
+            .form-wrap {
+                margin: 5em auto 0;
+            }
+
+            .form-wrap .tabs-content {
+                padding: 1.5em 4.9em;
+            }
+        }
+
+        /* CSS */
+        .element {
+            opacity: 0;
+            transform: scale(0.95) translate3d(0, 100%, 0);
+            transition: transform 400ms ease, opacity 400ms ease;
+        }
+
+        .element.active {
+            opacity: 1;
+            transform: scale(1) translate3d(0, 0, 0);
+        }
+
+        .element.inactive {
+            opacity: 0;
+            transform: scale(1) translate3d(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-custom mb-5 sticky-top">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="/templates/index.html"><img src="/img/icon.png" alt="Istanbul Image">Gezi
+                Rehberim </a>
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form id="search-form" class="d-flex mx-auto" role="search">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search"
+                        aria-label="Search">
+                </form>
+                <div id="search-results" class="mt-3"></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-2" aria-current="page" href="/templates/istanbul.html"><img
+                                src="/img/icon2.png" alt="Istanbul Image">İstanbul</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="/templates/plan.html">Plan Oluştur</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifications"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Kayıt Ol</a></li>
+                            <li><a class="dropdown-item" href="#">Gezmeye Hazır mısın?</a></li>
+                            <li><a class="dropdown-item" href="#">Çarkı çevir, kupon kazan!</a></li>
+                            <li><a class="dropdown-item" href="#">Notification 4</a></li>
+                            <li><a class="dropdown-item" href="#"></a></li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-fill ps-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/templates/about.html">Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/templates/game.html">Çarkı Çevir</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Kayıt Ol / Giriş Yap</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Çıkış</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+
+    <!-- LOGIN MODULE -->
+    <div class="login">
+        <div class="wrap">
+            <!-- TOGGLE -->
+            <div id="toggle-wrap">
+                <div id="toggle-terms">
+                    <div id="cross">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TERMS -->
+            <!-- <div class="terms">
+                <h2>dp Hizmet Şartları</h2>
+                <p class="small">Son güncelleme: 23 Eylül 2017</p>
+                <h3>dp'ye Hoşgeldiniz</h3>
+                <p>Hizmetlerimizi kullanarak bu şartları kabul etmiş oluyorsunuz. Lütfen dikkatlice okuyun.</p>
+                <p>Hizmetlerimiz oldukça çeşitlidir, bu nedenle ek şartlar veya ürün gereksinimleri (yaş gereksinimleri dahil) geçerli olabilir. Ek şartlar ilgili Hizmetlerle birlikte sunulacaktır ve bu ek şartlar, o Hizmetleri kullanmanız durumunda anlaşmanızın bir parçası olacaktır.</p>
+                <h3>Hizmetlerimizi Kullanmak</h3>
+                <p>Hizmetler içerisinde size sunulan politikaları takip etmelisiniz.</p>
+                <p>Hizmetlerimizi kullanmak, Hizmetlerimizdeki herhangi bir fikri mülkiyet hakkına sahip olmanızı sağlamaz. İçeriği yalnızca sahibinden izin alarak veya kanunlar tarafından izin verilen şekilde kullanabilirsiniz. Bu şartlar, Hizmetlerimizde kullanılan herhangi bir markalama veya logo kullanım hakkı vermez. Hizmetlerimizde veya Hizmetlerimizle birlikte görüntülenen yasal bildirimleri kaldırmayın, gizlemeyin veya değiştirmeyin.</p>
+                <p>Hizmetleri kullanımınızla bağlantılı olarak, size hizmet duyuruları, idari mesajlar ve diğer bilgiler gönderebiliriz. Bu iletişimlerden bazılarına aboneliğinizi iptal edebilirsiniz.</p>
+                <h3>dp Hesabınız</h3>
+                <p>Bazı Hizmetleri kullanmak için bir dp Hesabına ihtiyaç duyabilirsiniz. Kendi dp Hesabınızı oluşturabilirsiniz veya dp Hesabınız bir yönetici tarafından atanabilir, örneğin işvereniniz veya eğitim kurumunuz tarafından. Eğer bir yönetici tarafından atanan dp Hesabını kullanıyorsanız, farklı veya ek şartlar geçerli olabilir ve yöneticiniz hesabınıza erişebilir veya hesabınızı devre dışı bırakabilir.</p>
+                <p>dp Hesabınızı korumak için şifrenizi gizli tutun. dp Hesabınız üzerinden gerçekleşen tüm aktivitelerden siz sorumlusunuz. dp Hesap şifrenizi üçüncü taraf uygulamalarda tekrar kullanmamaya çalışın.</p>
+                <h3>Gizlilik ve Telif Hakkı Koruma</h3>
+                <p>dp'nin gizlilik politikaları, kişisel verilerinizi nasıl işlediğimizi ve Hizmetlerimizi kullanırken gizliliğinizi nasıl koruduğumuzu açıklar. Hizmetlerimizi kullanarak, dp'nin bu verileri gizlilik politikalarımıza uygun olarak kullanabileceğini kabul ediyorsunuz.</p>
+                <p>Telif hakkı ihlali iddialarına yanıt veriyoruz ve tekrar eden ihlalcilerin hesaplarını ABD Dijital Milenyum Telif Hakkı Yasası'nda belirtilen sürece göre sonlandırıyoruz.</p>
+                <p>Telif hakkı sahiplerinin çevrimiçi fikri mülkiyetlerini yönetmelerine yardımcı olmak için bilgi sağlıyoruz. Telif haklarınızı ihlal eden birinin olduğunu düşünüyorsanız ve bize bildirmek istiyorsanız, bildirimler hakkında bilgi ve dp'nin bildirimlere yanıt verme politikası hakkında bilgi almak için Yardım Merkezi'mizi ziyaret edebilirsiniz.</p>
+                <h3>Hizmetlerimizi Değiştirmek ve Sonlandırmak</h3>
+                <p>Hizmetlerimizi sürekli olarak değiştiriyor ve geliştiriyoruz. İşlevsellikleri veya özellikleri ekleyebilir veya kaldırabiliriz ve bir Hizmeti tamamen durdurabiliriz.</p>
+                <p>Hizmetlerimizi herhangi bir zamanda kullanmayı bırakabilirsiniz, ancak gitmenize üzüleceğiz. dp ayrıca Hizmetleri size sunmayı durdurabilir veya Hizmetlerimize yeni sınırlar ekleyebilir veya oluşturabilir.</p>
+                <p>Verilerinize sahip olduğunuzu düşünüyoruz ve bu verilerinize erişiminizi korumanın önemli olduğuna inanıyoruz. Bir Hizmeti sona erdirdiğimizde, makul ölçüde mümkünse, size makul bir önceden bildirim yapacağız ve bu Hizmetten bilgi almanız için bir şans vereceğiz.</p>
+                <h3>Garanti ve Feragatlerimiz</h3>
+                <p>Hizmetlerimizi ticari olarak makul bir beceri ve özenle sağlıyoruz ve bunları kullanmaktan keyif almanızı umuyoruz. Ancak Hizmetlerimiz hakkında bazı şeyleri vaat etmiyoruz.</p>
+                <p>BU ŞARTLARDA VEYA EK ŞARTLARDA AÇIKÇA BELİRTİLMEDİKÇE, NE dp NE DE TEDARİKÇİLERİ VE DAĞITICILARI HİZMETLERLE İLGİLİ ÖZEL VAATLERDE BULUNMAZ. ÖRNEĞİN, HİZMETLERİN İÇERİĞİ, HİZMETLERİN BELİRLİ İŞLEVLERİ VEYA GÜVENİLİRLİĞİ, MEVCUTLUK VEYA İHTİYAÇLARINIZI KARŞILAMA KONUSUNDA HİÇBİR TAHSİS YAPMAMAKTAYIZ. HİZMETLERİ “OLDUĞU GİBİ” SAĞLIYORUZ.</p>
+                <p>BAZI YARGI BÖLGELERİ, ZIMNİ TİCARİ AMACA UYGUNLUK GARANTİSİ, BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME GİBİ BELİRLİ GARANTİLER SUNAR. YASALARCA İZİN VERİLDİĞİ ÖLÇÜDE, TÜM GARANTİLERİ HARİÇ TUTUYORUZ.</p>
+                <h3>Hizmetlerimiz İçin Sorumluluk</h3>
+                <p>YASAL OLARAK İZİN VERİLDİĞİNDE, dp VE dp'NİN TEDARİKÇİLERİ VE DAĞITICILARI, KAYBEDİLEN KARLAR, GELİRLER VEYA VERİLER, FINANSAL KAYIPLAR VEYA DOLAYLI, ÖZEL, SONUÇSAL, ÖRNEK OLARAK VERİLEN HASARLARDAN SORUMLU OLMAYACAKTIR.</p>
+                <p>YASAL OLARAK İZİN VERİLDİĞİ ÖLÇÜDE, dp'NİN VE TEDARİKÇİLERİNİN VE DAĞITICILARININ, BU ŞARTLAR ALTINDA HERHANGİ BİR TALEP İÇİN TOPLAM SORUMLULUĞU, HİZMETLERİ KULLANMAK İÇİN BİZE ÖDEDİĞİNİZ MİKTARLA SINIRLIDIR (VEYA SEÇERSEK, HİZMETLERİ YENİDEN SAĞLAMA).</p>
+                <p>HER DURUMDA, dp VE TEDARİKÇİLERİ VE DAĞITICILARI, MAKUL ŞEKİLDE ÖNGÖRÜLEMEYEN HERHANGİ BİR KAYIP VEYA HASARDAN SORUMLU OLAMAZ.</p>
+                <h3>Bu Şartlar Hakkında</h3>
+                <p>Bu şartları veya bir Hizmete uygulanan ek şartları, örneğin, yasadaki değişiklikleri veya Hizmetlerimizdeki değişiklikleri yansıtmak için değiştirebiliriz. Şartları düzenli olarak kontrol etmelisiniz. Bu sayfada bu şartlardaki değişikliklerin bildirimini yayınlayacağız. Ek şartlardaki değişikliklerin bildirimini ilgili Hizmette yayınlayacağız. Değişiklikler geriye dönük olarak uygulanmayacak ve yayınlandıkları tarihten en erken on dört gün sonra geçerli olacaktır. Ancak, Hizmet için yeni işlevleri ele alan değişiklikler veya hukuki nedenlerle yapılan değişiklikler derhal geçerli olacaktır. Hizmet için değiştirilmiş şartları kabul etmiyorsanız, o Hizmetin kullanımını durdurmalısınız.</p>
+                <p>Bu şartlara uymazsanız ve hemen harekete geçmezsek, bu, herhangi bir hak kaybı yaşadığımız anlamına gelmez (örneğin, gelecekte harekete geçme hakkımızı kaybetmemiz gibi).</p>
+                <p>Bu şartlarla veya Hizmetlerle ilgili herhangi bir anlaşmazlıkta, Kaliforniya, ABD yasaları, Kaliforniya’nın çatışma yasaları kuralları hariç, geçerli olacaktır. Bu şartlarla veya Hizmetlerle ilgili tüm talepler, Kaliforniya, ABD’nin Santa Clara Bölgesi'ndeki federal veya eyalet mahkemelerinde yalnızca dava edilecektir ve siz ve dp bu mahkemelerde kişisel yargılama yetkisini kabul edersiniz.</p>
+                <p>dp ile iletişime geçmek için bilgi almak isterseniz, lütfen iletişim sayfamızı ziyaret edin.</p>
+            </div> -->
+
+            <!-- RECOVERY -->
+            <div class="recovery">
+                <h2>Şifre Kurtarma</h2>
+                <p>Hesapla ilişkili <strong>e-posta adresinizi</strong> veya <strong>kullanıcı adınızı</strong> girin ve
+                    <strong>Gönder</strong> düğmesine tıklayın
+                </p>
+                <p>Şifrenizi sıfırlamak için talimatları içeren bir e-posta göndereceğiz.</p>
+                <form class="recovery-form" action="" method="post">
+                    <input type="text" class="input" id="user_recover"
+                        placeholder="Buraya E-posta veya Kullanıcı Adı Girin">
+                    <input type="submit" class="button" value="Gönder">
+                </form>
+                <p class="mssg">Size daha fazla talimat içeren bir e-posta gönderildi.</p>
+            </div>
+
+            <!-- SLIDER -->
+            <div class="content">
+                <!-- LOGO -->
+                <div class="logo">
+                    <a href="#"><img src="/img/icon.png" alt=""></a>
+                </div>
+                <!-- SLIDESHOW -->
+                <div id="slideshow">
+                    <div class="one">
+                        <h2><span>Gezi Rehberim</span></h2>
+                        <p>Hafta sonu İstanbul’dan kaçmak için yer mi arıyorsunuz?</p>
+                    </div>
+                </div>
+            </div>
+            <!-- LOGIN FORM -->
+            <div class="user">
+                <!-- ACTIONS
+                    <div class="actions">
+                        <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
+                    </div>
+                    -->
+                <div class="form-wrap">
+                    <!-- TABS -->
+                    <div class="tabs">
+                        <h3 class="login-tab"><a class="log-in active" href="#login-tab-content"><span>Giriş
+                                    Yap</span></a></h3>
+                        <h3 class="signup-tab"><a class="sign-up" href="#signup-tab-content"><span>Kayıt Ol</span></a>
+                        </h3>
+                    </div>
+                    <!-- TABS CONTENT -->
+                    <div class="tabs-content">
+                        <!-- TABS CONTENT LOGIN -->
+                        <div id="login-tab-content" class="active">
+                            <form class="login-form" action="/index.html" method="get">
+                                <input type="text" class="input" id="user_login" autocomplete="off"
+                                    placeholder="E-posta veya Kullanıcı Adı">
+                                <input type="password" class="input" id="user_pass" autocomplete="off"
+                                    placeholder="Şifre">
+                                <input type="checkbox" class="checkbox" checked id="remember_me">
+                                <label for="remember_me">Beni Hatırla</label>
+                                <input type="submit" class="button" value="Giriş Yap">
+                            </form>
+                            <div class="help-action">
+                                <p><i class="fa fa-arrow-left" aria-hidden="true"></i><a class="forgot" href="#">Şifreni
+                                        mi unuttun?</a></p>
+                            </div>
+                        </div>
+                        <!-- TABS CONTENT SIGNUP -->
+                        <div id="signup-form-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- React ve Babel Script'leri -->
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+   <!-- React Kodunuzu Buraya Ekleyin -->
+   <script type="text/babel">
+    const { useState } = React;
+    const ReactDOM = ReactDOM;
+
+    const SignupForm = () => {
+        const [email, setEmail] = useState('');
+        const [username, setUsername] = useState('');
+        const [password, setPassword] = useState('');
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+
+            const formData = {
+                email,
+                username,
+                password
+            };
+
+            console.log('Form Data:', formData);
+
+            setEmail('');
+            setUsername('');
+            setPassword('');
+        };
+
+        return (
+            <div id="signup-tab-content">
+                <form className="signup-form" onSubmit={handleSubmit}>
+                    <input 
+                        type="email" 
+                        className="input" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="E-posta" 
+                        required 
+                    />
+                    <input 
+                        type="text" 
+                        className="input" 
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Kullanıcı Adı" 
+                        required 
+                    />
+                    <input 
+                        type="password" 
+                        className="input" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Şifre" 
+                        required 
+                        autoComplete="current-password"
+                    />
+                    <input 
+                        type="submit" 
+                        className="button" 
+                        value="Kayıt Ol" 
+                    />
+                </form>
+                <div className="help-action">
+                    <p>Kayıt olarak, <a href="#">hizmet şartlarımızı</a> kabul etmiş olursunuz.</p>
+                </div>
+            </div>
+        );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('signup-form-container'));
+    root.render(<SignupForm />);
+</script>
+
+
+
+    <!--Login Js -->
+    <script>
+        // LOGIN TABS
+        $(function () {
+            var tab = $('.tabs h3 a');
+            tab.on('click', function (event) {
+                event.preventDefault();
+                tab.removeClass('active');
+                $(this).addClass('active');
+                var tab_content = $(this).attr('href');
+                $('div[id$="tab-content"]').removeClass('active');
+                $(tab_content).addClass('active');
+            });
+        });
+
+        // SLIDESHOW (Single Slide)
+        $(function () {
+            // Tek bir slayt gösterecek şekilde ayarlandı
+            $('#slideshow > div').hide(); // Tüm slaytları gizle
+            $('#slideshow > div:first').show(); // İlk slaytı göster
+        });
+
+        // CUSTOM JQUERY FUNCTION FOR SWAPPING CLASSES
+        (function ($) {
+            'use strict';
+            $.fn.swapClass = function (remove, add) {
+                this.removeClass(remove).addClass(add);
+                return this;
+            };
+        }(jQuery));
+
+        // SHOW/HIDE PANEL ROUTINE
+        $(function () {
+            $('.agree,.forgot, #toggle-terms, .log-in, .sign-up').on('click', function (event) {
+                event.preventDefault();
+                var terms = $('.terms'),
+                    recovery = $('.recovery'),
+                    close = $('#toggle-terms'),
+                    arrow = $('.tabs-content .fa');
+
+                if ($(this).hasClass('agree') || $(this).hasClass('log-in') || ($(this).is('#toggle-terms')) && terms.hasClass('open')) {
+                    if (terms.hasClass('open')) {
+                        terms.swapClass('open', 'closed');
+                        close.swapClass('open', 'closed');
+                        arrow.swapClass('active', 'inactive');
+                    } else {
+                        if ($(this).hasClass('log-in')) {
+                            return;
+                        }
+                        terms.swapClass('closed', 'open').scrollTop(0);
+                        close.swapClass('closed', 'open');
+                        arrow.swapClass('inactive', 'active');
+                    }
+                } else if ($(this).hasClass('forgot') || $(this).hasClass('sign-up') || $(this).is('#toggle-terms')) {
+                    if (recovery.hasClass('open')) {
+                        recovery.swapClass('open', 'closed');
+                        close.swapClass('open', 'closed');
+                        arrow.swapClass('active', 'inactive');
+                    } else {
+                        if ($(this).hasClass('sign-up')) {
+                            // Handle form submission for sign-up
+                            var formData = {
+                                email: $('#user_email').val(),
+                                username: $('#user_name').val(),
+                                password: $('#user_pass').val()
+                            };
+
+                            $.ajax({
+                                type: 'POST',
+                                url: '/submit', // Python backend URL
+                                contentType: 'application/json',
+                                data: JSON.stringify(formData),
+                                success: function (response) {
+                                    // Handle successful response here
+                                    window.location.href = 'result.html'; // Redirect to another page
+                                },
+                                error: function (xhr, status, error) {
+                                    // Handle error here
+                                    console.error('Error:', error);
+                                }
+                            });
+                        }
+                        recovery.swapClass('closed', 'open');
+                        close.swapClass('closed', 'open');
+                        arrow.swapClass('inactive', 'active');
+                    }
+                }
+            });
+        });
+
+        // DISPLAY MESSAGE
+        $(function () {
+            $('.recovery .button').on('click', function (event) {
+                event.preventDefault();
+                $('.recovery .mssg').addClass('animate');
+                setTimeout(function () {
+                    $('.recovery').swapClass('open', 'closed');
+                    $('#toggle-terms').swapClass('open', 'closed');
+                    $('.tabs-content .fa').swapClass('active', 'inactive');
+                    $('.recovery .mssg').removeClass('animate');
+                }, 2500);
+            });
+        });
+
+        // DISABLE SUBMIT FOR DEMO
+        $(function () {
+            $('.button').on('click', function (event) {
+                $(this).stop();
+                event.preventDefault();
+                return false;
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

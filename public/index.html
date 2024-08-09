@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Form</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const LoginForm = () => {
+      const [email, setEmail] = React.useState('');
+      const [password, setPassword] = React.useState('');
+  
+      const handleSubmit = (e) => {
+          e.preventDefault();
+  
+          const formData = {
+              email,
+              password
+          };
+  
+          // Form verilerini sunucuya gönderme
+          fetch('/login', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+          })
+          .then(response => response.json())
+          .then(data => console.log('Success:', data))
+          .catch(error => console.error('Error:', error));
+  
+          // Form verilerini sıfırlama
+          setEmail('');
+          setPassword('');
+      };
+  
+      return (
+          <div id="login-tab-content">
+              <form className="login-form" onSubmit={handleSubmit}>
+                  <input 
+                      type="email" 
+                      className="input" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="E-posta" 
+                      required 
+                  />
+                  <input 
+                      type="password" 
+                      className="input" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Şifre" 
+                      required 
+                  />
+                  <input 
+                      type="submit" 
+                      className="button" 
+                      value="Giriş Yap" 
+                  />
+              </form>
+              <div className="help-action">
+                  <p>Şifrenizi mi unuttunuz? <a href="#">Yeniden oluşturun</a></p>
+              </div>
+          </div>
+      );
+  };
+  
+  // React bileşenini HTML'e yerleştirme
+  ReactDOM.render(
+      <LoginForm />,
+      document.getElementById('login-form-container')
+  );
+  
+  </script>
+</body>
+</html>

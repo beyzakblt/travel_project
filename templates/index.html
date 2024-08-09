@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Rehberim</title>
+    <link rel="icon" type="image/png" href="/img/icon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <!-- Lottie  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            z-index: 999
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Loading -->
+    <div id="loading">
+        <img src="/loader.gif" alt="Yükleniyor..." />
+        <h1>Yükleniyor</h1>
+    </div>
+
+
+    <!-- Hava Durumu Start -->
+    <div id="id361ea65fd227e"
+        a='{"t":"g7bs","v":"1.2","lang":"tr","locs":[1474],"ssot":"c","sics":"ds","cbkg":"rgba(255,255,255,0)","cfnt":"rgb(0,0,0)","cend":"rgba(0,0,0,0)","slis":36,"slfs":17}'>
+        Hava Durumu Veri Kaynağı: <a
+            href="https://sharpweather.com/weather_istanbul/30_days/">sharpweather.com/weather_istanbul/30_days/</a>
+    </div>
+    <script async src="https://static1.sharpweather.com/widgetjs/?id=id361ea65fd227e"></script>
+    <!-- Hava Durumu End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="/templates/index.html"><img src="/img/icon.png" alt="Istanbul Image">Gezi
+                Rehberim </a>
+            <div class="d-flex flex-grow-1 justify-content-center">
+                <form id="search-form" class="d-flex mx-auto" role="search">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search"
+                        aria-label="Search">
+                </form>
+                <div id="search-results" class="mt-3"></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-2" aria-current="page" href="/templates/istanbul.html"><img
+                                src="/img/icon2.png" alt="Istanbul Image">İstanbul</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="/templates/plan.html">Plan Oluştur</i></a>
+                    </li>
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-notifications"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Kullanmadığın kupan var!</a></li>
+                            <li><a class="dropdown-item" href="#">Gezmeye Hazır mısın?</a></li>
+                            <li><a class="dropdown-item" href="#">Çarkı çevir, kupon kazan!</a></li>
+                            <li><a class="dropdown-item" href="#">Notification 4</a></li>
+                            <li><a class="dropdown-item" href="#"></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-fill ps-1"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/templates/about.html">Bilgilerim</a></li>
+                            <li><a class="dropdown-item" href="/templates/game.html">Çarkı Çevir</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Kayıt Ol / Giriş Yap</a></li>
+                            <li><a class="dropdown-item" href="/templates/login.html">Çıkış</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Plan Start -->
+    <div
+        class="container d-flex justify-content-center align-items-center mt-2 shadow-lg p-3 mb-2 bg-body-tertiary rounded">
+        <div class="row w-100">
+            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-center">
+                <div id="lottie" style="width: 200px; height: 200px;"></div>
+                <div class="btn-container mt-3 mb-3 p-2">
+                    <a href="/templates/plan.html" class="btn btn-primary pe-5 ps-5 pt-2 pb-2">Plan Oluştur</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8 d-flex flex-column align-items-center justify-content-center">
+                <p class="fs-4 fw-bold">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? <br>
+                    Size İstanbul’un en
+                    güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini derledik.</p>
+            </div>
+        </div>
+    </div>
+    <div
+        class="container d-flex justify-content-center align-items-center  shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <div class="row w-100">
+            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-center">
+                <div id="lotties" style="width: 200px; height: 200px;"></div>
+                <div class="btn-container mt-3 mb-3 p-2">
+                    <a href="/templates/game.html" class="btn btn-primary pe-5 ps-5 pt-2 pb-2">Çarkı Çevir</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-8 d-flex flex-column align-items-center justify-content-center">
+                <p class="fs-4 fw-bold">Anlaşmalı mekanlarda kullanabileceğin indirimlerden yararlan! <br>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, id!
+                    </p>
+            </div>
+        </div>
+    </div>
+    <!-- Plan End -->
+
+    <!-- Card İstanbul Start -->
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">İstanbul Gezi Rehberi</h3>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <a href="detail.html" class="card-link" style="text-decoration: none; color: inherit;">
+                    <div class="card d-flex flex-column align-items-stretch" style="width: 100%;">
+                        <img src="/img/bir.jpg" class="card-img-top rounded-0" alt="...">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">GÜNÜBİRLİK İSTANBUL KAÇAMAKLARI – MAX 1,5 SAAT MESAFEDEKİ
+                                YERLER</h5>
+                            <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                                İstanbul’un en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek
+                                yerlerini derledik.</p>
+                            <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 100%;">
+                    <img src="/img/iki.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">GÜNÜBİRLİK İSTANBUL KAÇAMAKLARI – MAX 1,5 SAAT MESAFEDEKİ
+                            YERLER
+                        </h5>
+                        <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                            İstanbul’un
+                            en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini derledik.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 100%;">
+                    <img src="/img/uc.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">GÜNÜBİRLİK İSTANBUL KAÇAMAKLARI – MAX 1,5 SAAT MESAFEDEKİ
+                            YERLER
+                        </h5>
+                        <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                            İstanbul’un
+                            en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini derledik.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 100%;">
+                    <img src="/img/dort.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">ATATÜRK ARBORETUMU – NEREDE, NASIL GİDİLİR, YEME İÇME</h5>
+                        <p class="card-text">Atatürk Arboretumu İstanbul’da yemyeşil bir vaha. O kadar fotojenik ki
+                            düğün fotogafçısı, dizi seti eksik olmuyor. Kalabalıklardan burada da kaçış yok ama en
+                            azından mangal dumanı ve futbol oynayan dayılardan kaçabileceğiniz yemyeşil bir park.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card İstanbul End -->
+
+
+    <!-- Card Bağcılar Start -->
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Bağcılar</h3>
+        </div>
+        <div class="row justify-content-center  ms-5">
+            <div class="col-md-4 mb-4 mt-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 22rem;">
+                    <img src="/img/bagcılar2.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">Bağcılar'da Gezilecek Yerler
+                        </h5>
+                        <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                            İstanbul’un
+                            en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini derledik.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mt-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 22rem;">
+                    <img src="/img/bagcılar3.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">Bağcılar'da Kafe Kültürü
+                        </h5>
+                        <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                            İstanbul’un
+                            en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini derledik.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mt-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 22rem;">
+                    <img src="/img/bagcılar2.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">Bağcılar'da Engelsiz Parklar
+                        </h5>
+                        <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                            İstanbul’un
+                            en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini derledik.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card Bağcılar End -->
+
+    <!-- Card Fatih Start -->
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Fatih - Tarihi Yarımada</h3>
+        </div>
+        <div class="row justify-content-center  ms-5">
+            <div class="col-md-4 mb-4 mt-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 22rem;">
+                    <img src="/img/yarımada.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">SULTANAHMET CAMİ – HİKAYESİ VE GİTMEDEN BİLMENİZ GEREKENLER
+                        </h5>
+                        <p class="card-text">İstanbul’un tarihi semtine adını veren, her daim kalabalık olan
+                            Sultanahmet
+                            Cami tüm İstanbul’a görmesi gereken yerler listlerinde en üst sıralarda yer alıyor. Bana
+                            sorarsanız daha estetetik camiler var ama elbette Sultanahmet Cami’ni tarihteki ve şehir
+                            silüetindeki yeri ile bambaşka bir ağırlığa sahip. Gitmeden önce tarihinden kılık
+                            kıyafete
+                            bilmeniz gerekenleri toparladık.</p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mt-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 22rem;">
+                    <img src="/img/yarımada1.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">KAPALIÇARŞI: TARİHİ, GEZİLECEK YERLERİ, ALIŞVERİŞ REHBERİ
+                        </h5>
+                        <p class="card-text">Hafta sonu İstanbul’dan kaçmak için yer mi arıyorusunuz? Size
+                            İstanbul’un
+                            en güzel tatil yerlerini, doğa kaçamaklarını ve denize girilebilecek yerlerini
+                            derledik.Yüzlerce yıllık tarihi, 4000 dükkan, 500 tezgahtan ve 21 kapısı ile dünyanın en
+                            büyük kapalı tarihi üstü kapalı çarşısı olan Kapalıçarşı’yı ister alışveriş, ister
+                            kültürel
+                            gezi niyetine en az bir kez görmek gerekir. İşte bu yazımızda ziyaretinizin en iyi
+                            şekilde
+                            geçmesi için tarihinden en güzel dükkanlara Kapalıçarşı hakkında bilmeniz gerekenleri
+                            bulacaksınız.</p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mt-4">
+                <div class="card d-flex flex-column align-items-stretch" style="width: 22rem;">
+                    <img src="/img/yarımada2.jpg" class="card-img-top rounded-0" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">YEREBATAN SARNICI HAKKINDA: TARİHİ, BİLET ÜCRETLERİ,
+                            GİZEMLERİ
+                        </h5>
+                        <p class="card-text">Sultanahmet’te bulunan Yerebatan Sarnıcı İstanbul’un en özel tarihi
+                            mekanlarından. Hatta iddia ediyoruz, burası kadar insanı mistik büyüsü ile insanı içine
+                            çeken bir yer daha İstanbul’da yok. Bu yazımızdan gidenler için faydalı bilgilerin yanı
+                            sıra
+                            Yerebatan Sarnıcı’nın tarihi, mimarisi ve efsaneleri ile ilgili bilgileri bulacaksınız.
+                        </p>
+                        <a href="/templates/plan.html" class="btn btn-primary mt-auto">Plan Oluştur</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card Fatih End -->
+
+
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-5 pe-5">
+                    <h6 class="mb-3">HAKKIMIZDA</h6>
+                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aliquam
+                        eaque
+                        harum officia, facere ipsam quod optio est excepturi, corrupti repudiandae nam expedita
+                        reiciendis vero obcaecati. Reiciendis ducimus impedit, in dolore atque quibusdam quod, hic
+                        aperiam quidem vitae error, deleniti labore et doloremque accusantium rem enim neque
+                        voluptatibus dolor explicabo.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-5 pe-5">
+                    <h6>İLÇELER</h6>
+                    <div class="footer">
+                        <div class="col">
+                            <ul id="ilce-listesi-1" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-2" class="footer-links"></ul>
+                        </div>
+                        <div class="col">
+                            <ul id="ilce-listesi-3" class="footer-links"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-2  ms-0">
+                    <h6 class="">www.gezirehberim.com</h6>
+                    <ul class="footer-links">
+                        <li><a href="">Hakkımızda</a></li>
+                        <li><a href="">Kullanım Şartları</a></li>
+                        <li><a href="">Medyada Biz</a></li>
+                        <li><a href="">Gizlilik</a></li>
+                        <li><a href="">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="bi bi-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="/js/app.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('loading').style.display = 'none';
+            }, 1000);
+        });
+    </script>
+    <!-- Animasyon Js -->
+    <script>
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/animation.json' // JSON dosyasının doğru yolu
+        });
+
+        animation.addEventListener('DOMLoaded', function () {
+            console.log('Animasyon yüklendi!');
+        });
+
+        animation.addEventListener('data_failed', function () {
+            console.error('Animasyon verileri yüklenemedi.');
+        });
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lotties'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/wheel.json' // JSON dosyasının doğru yolu
+        });
+
+        animation.addEventListener('DOMLoaded', function () {
+            console.log('Animasyon yüklendi!');
+        });
+
+        animation.addEventListener('data_failed', function () {
+            console.error('Animasyon verileri yüklenemedi.');
+        });
+    </script>
+</body>
+
+</html>
