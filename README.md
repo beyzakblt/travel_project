@@ -18,7 +18,9 @@
 ![Ana Sayfa](./images/anasayfa.png)
 
 ### İlçe ve Kategori Seçimi
-![Filtreleme](./images/filtreleme.png)
+![Filtreleme](./images/plan.png)
+![Filtreleme](./images/plan2.png)
+
 
 ### Rota Oluşturma
 ![Rota](./images/rota.png)
@@ -49,5 +51,6 @@ Ardından `index.html` dosyasını bir tarayıcıda açarak projeyi görebilirsi
 
 **Beyza Akbulut**  
 📧 beyzakblt@gmail.com  
-🔗 [(https://www.linkedin.com/in/beyzakbulut)]  
-💻 [(https://github.com/beyzakblt)]
+🔗 [LinkedIn](https://www.linkedin.com/in/beyzakbulut)  
+💻 [GitHub](https://github.com/beyzakblt)
+
